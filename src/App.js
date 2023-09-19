@@ -85,7 +85,6 @@ function App(props) {
       </div>
       
       <ul
-        role="list"
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading">
         {taskList}
