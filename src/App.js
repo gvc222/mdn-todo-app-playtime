@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from "./components/Form";
 import Todo from "./components/Todo";
 import FilterButton from "./components/FilterButton";
@@ -10,12 +10,28 @@ const FILTER_MAP = {
   Active: (task) => !task.completed,
   Completed: (task) => task.completed
 }
+
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 function App(props) {
 
   const [tasks, setTasks] = useState(props.tasks);
   const [filter, setFilter] = useState('All')
+
+  useEffect(() =>{
+    const savedTasks = JSON.parse(
+      localStorage.getItem('to-do-app-data')
+    )
+    // console.log('Saved tasks:', savedTasks);
+    if (savedTasks) {
+      setTasks(savedTasks);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('to-do-app-data', JSON.stringify(tasks));
+    // console.log('Tasks saved to local storage', tasks)
+  }, [tasks])
 
   const taskList = tasks
     .filter(FILTER_MAP[filter])
@@ -88,9 +104,9 @@ function App(props) {
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading">
         {taskList}
-        
       </ul>
     </div>
   );
 }
+
 export default App;

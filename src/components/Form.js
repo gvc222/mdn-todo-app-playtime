@@ -29,7 +29,7 @@ function Form(props) {
             name="text" 
             id="new-todo-input" 
             className="input input__lg" 
-            autocomplete="off"
+            autoComplete="off"
             value = {name}
             onChange= {handleChange}
           />
@@ -39,4 +39,5 @@ function Form(props) {
         </form>
     )
 }
+
 export default Form;
