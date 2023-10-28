@@ -3,7 +3,7 @@ import Form from "./components/Form";
 import Todo from "./components/Todo";
 import FilterButton from "./components/FilterButton";
 import {nanoid} from 'nanoid';
-
+import { ToggleDarkMode } from './components/ToggleDarkMode';
 
 const FILTER_MAP = {
   All: () => true,
@@ -87,24 +87,32 @@ function App(props) {
     });
     setTasks(editedTaskList);
    }
+  
+  const [ darkMode, setDarkMode ] = useState(false);
  
  
    return (
-    <div className="todoapp stack-large">
-      <h1>TodoMatic</h1>
+    <div className={`${darkMode && 'dark-mode'}`}>
+      <div className={`todoapp stack-large ${darkMode && 'dark-mode'}`}>
+        <header>
+          <h1>TodoMatic</h1>
+          <ToggleDarkMode toggleDarkMode={setDarkMode}/>
+        </header>
+        
         <Form onSubmit={addTask}/>
         <div className="filters btn-group stack-exception">
           {filterList}
         </div>
-      <div className="tasks-remaining">
-      <h2 id="list-heading">{headingText}</h2>
+        <div className="tasks-remaining">
+        <h2 id="list-heading">{headingText}</h2>
+        </div>
+        
+        <ul
+          className="todo-list stack-large stack-exception"
+          aria-labelledby="list-heading">
+          {taskList}
+        </ul>
       </div>
-      
-      <ul
-        className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading">
-        {taskList}
-      </ul>
     </div>
   );
 }
