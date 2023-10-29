@@ -3,6 +3,7 @@
 Deployed with Netlify at: https://development--imaginative-treacle-42b9d5.netlify.app/
 
 * Dark and Light Mode can be toggled with a button.
+* Any tasks can be edited for typographical errors.
 * Data is saved into your browser's local storage, so you can come back anytime to check off progress.
 * Has 3 filter views, one for ALL tasks, another for pending/ACTIVE tasks, then finally all the COMPLETED tasks.
 
